@@ -4,6 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import Image
+import hvplot.pandas
+
+%matplotlib inline
 
 # Set the title for the Streamlit app
 st.title("Valentines' Consumer Data")
