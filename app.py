@@ -77,6 +77,7 @@ df = pd.read_csv('historical_spending.csv')
 df= df.drop('PerPerson', axis=1)
 sampled_df_5_columns =df.iloc[:, :5]
 sns.pairplot(sampled_df_5_columns)
+plt.show()
 sns.distplot(df['Flowers'])
 sns.heatmap(df.corr(), annot=True)
 X = df.drop('Year', axis=1)
