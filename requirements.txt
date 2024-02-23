@@ -3,3 +3,4 @@ streamlit
 seaborn
 Pillow
 sweetviz
+hvplot
