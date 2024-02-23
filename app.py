@@ -1,3 +1,4 @@
+pip install hvplot --quiet
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -6,7 +7,10 @@ import seaborn as sns
 from PIL import Image
 import hvplot.pandas
 
+
 %matplotlib inline
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 
 # Set the title for the Streamlit app
 st.title("Valentines' Consumer Data")
@@ -70,4 +74,48 @@ Flowers_min, Flowers_max = st.sidebar.slider('Select the range value for Flowers
 filtered_df = df[(df['Year'] >= Lowerbound_Year) & (df['Year'] <= Upperbound_Year) & (df['Flowers'] >= Flowers_min) & (df['Flowers'] <= Flowers_max)]
 
 tab3.bar_chart(data=filtered_df, x="Year", y="Flowers")
+
+st.title("Explanatory Data Analysis: Linear Regresssion Line")
+df = pd.read_csv('historical_spending.csv')
+df= df.drop('PerPerson', axis=1)
+sampled_df_5_columns =df.iloc[:, :5]
+sns.pairplot(sampled_df_5_columns)
+sns.distplot(df['Flowers'])
+sns.heatmap(df.corr(), annot=True)
+X = df.drop('Year', axis=1)
+y = df['Year']
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+from sklearn.linear_model import LinearRegression
+
+lr = LinearRegression()
+lr.fit(X_train,y_train)
+coeff_df = pd.DataFrame(lr.coef_, X.columns, columns=['Coefficient'])
+coeff_df
+feature_names = [f'Feature_{i}' for i in list(X.columns)]
+df_X = pd.DataFrame(X, columns=feature_names)
+# Coefficients represent the importance in linear regression
+coefficients = lr.coef_
+
+# Making the coefficients positive to compare magnitude
+importance = np.abs(coefficients)
+
+# Plotting feature importance with feature names
+plt.figure(figsize=(10, 8))
+plt.barh(feature_names, importance)
+plt.xlabel('Absolute Coefficient Value')
+plt.title('Feature Importance (Linear Regression)')
+plt.show()
+pred = lr.predict(X_test)
+plt.figure(figsize=(10,7))
+plt.title("Actual vs. predicted",fontsize=25)
+plt.xlabel("Actual test set Year",fontsize=18)
+plt.ylabel("Prediction for the Year", fontsize=18)
+plt.scatter(x=y_test,y=pred)
+from sklearn import metrics
+print('MAE:', metrics.mean_absolute_error(y_test, pred))
+print('MSE:', metrics.mean_squared_error(y_test, pred))
+print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, pred)))
+
 
