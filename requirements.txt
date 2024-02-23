@@ -3,4 +3,5 @@ streamlit
 seaborn
 Pillow
 sweetviz
+scikit-learn
 
