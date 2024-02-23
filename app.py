@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import Image
 import hvplot.pandas
-pip install hvplot --quiet
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
