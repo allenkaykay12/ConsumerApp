@@ -79,6 +79,7 @@ sampled_df_5_columns =df.iloc[:, :5]
 fig1=sns.pairplot(sampled_df_5_columns)
 st.pyplot(fig1)
 fig2= sns.displot(df['Flowers'], kind="kde")
+fig2.settitle("The density Distribution Chart!")
 st.pyplot(fig2)
 fig3=sns.heatmap(df.corr(), annot=True)
 st.pyplot(fig3)
