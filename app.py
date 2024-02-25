@@ -82,7 +82,7 @@ fig2= sns.displot(df['Flowers'], kind="kde")
 fig2.fig.suptitle("The density Distribution Chart!")
 st.pyplot(fig2)
 fig3=sns.heatmap(df.corr(), annot=True)
-plt.show(fig3)
+st.pyplot(fig3)
 X = df.drop('Year', axis=1)
 y = df['Year']
 from sklearn.model_selection import train_test_split
