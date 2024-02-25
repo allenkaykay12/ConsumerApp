@@ -78,7 +78,7 @@ df= df.drop('PerPerson', axis=1)
 sampled_df_5_columns =df.iloc[:, :5]
 fig1=sns.pairplot(sampled_df_5_columns)
 st.pyplot(fig1)
-fig2= sns.distplot(df['Flowers'])
+fig2= sns.displot(df['Flowers'])
 st.pyplot(fig2)
 fig3=sns.heatmap(df.corr(), annot=True)
 st.pyplot(fig3)
