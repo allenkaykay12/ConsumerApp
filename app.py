@@ -81,13 +81,16 @@ st.pyplot(fig1)
 fig2= sns.displot(df['Flowers'], kind="kde")
 fig2.fig.suptitle("The density Distribution Chart!")
 st.pyplot(fig2)
+# Create a new Figure object
 fig3, ax = plt.subplots() 
+# Pass the Axes object to the heatmap function
 heatmap = sns.heatmap(df.corr(), annot=True, ax=ax)
+fig3.fig.suptitle("Correlation Matrix")
+# Pass the Figure object to st.pyplot()
 st.pyplot(fig3)
 X = df.drop('Year', axis=1)
 y = df['Year']
 from sklearn.model_selection import train_test_split
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 from sklearn.linear_model import LinearRegression
 
