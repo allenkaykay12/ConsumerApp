@@ -91,13 +91,15 @@ st.pyplot(fig3)
 X = df.drop('Year', axis=1)
 y = df['Year']
 from sklearn.model_selection import train_test_split
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
 from sklearn.linear_model import LinearRegression
 
 lr = LinearRegression()
 lr.fit(X_train,y_train)
 coeff_df = pd.DataFrame(lr.coef_, X.columns, columns=['Coefficient'])
-X.columns
+
 feature_names = [f'Feature_{i}' for i in list(X.columns)]
 df_X = pd.DataFrame(X, columns=feature_names)
 # Coefficients represent the importance in linear regression
