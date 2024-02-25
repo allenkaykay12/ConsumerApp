@@ -76,6 +76,7 @@ st.title("Explanatory Data Analysis: Linear Regresssion Line")
 df = pd.read_csv('historical_spending.csv')
 df= df.drop('PerPerson', axis=1)
 sampled_df_5_columns =df.iloc[:, :5]
+st.write("The chart below shows the relationship between different variables in our dataset.")
 fig1=sns.pairplot(sampled_df_5_columns)
 st.pyplot(fig1)
 fig2= sns.displot(df['Flowers'], kind="kde")
