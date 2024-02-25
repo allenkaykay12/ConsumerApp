@@ -123,7 +123,7 @@ plt.title("Actual vs. predicted",fontsize=25)
 plt.xlabel("Actual test set Year",fontsize=18)
 plt.ylabel("Prediction for the Year", fontsize=18)
 plt.scatter(x=y_test,y=pred)
-st.pyplot(plt)
+pyplot.show()
 from sklearn import metrics
 print('MAE:', metrics.mean_absolute_error(y_test, pred))
 print('MSE:', metrics.mean_squared_error(y_test, pred))
