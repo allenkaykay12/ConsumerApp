@@ -85,7 +85,7 @@ st.pyplot(fig2)
 fig3, ax = plt.subplots() 
 # Pass the Axes object to the heatmap function
 heatmap = sns.heatmap(df.corr(), annot=True, ax=ax)
-fig3.fig.suptitle("Correlation Matrix")
+heatmap.fig.suptitle("Correlation Matrix")
 # Pass the Figure object to st.pyplot()
 st.pyplot(fig3)
 X = df.drop('Year', axis=1)
