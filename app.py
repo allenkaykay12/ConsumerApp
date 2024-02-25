@@ -73,6 +73,7 @@ filtered_df = df[(df['Year'] >= Lowerbound_Year) & (df['Year'] <= Upperbound_Yea
 tab3.bar_chart(data=filtered_df, x="Year", y="Flowers")
 
 st.title("Explanatory Data Analysis: Linear Regresssion Line")
+tab1, tab2, tab3 = st.tabs(["PairPlot", "Correlation Matrix", "Feature Importance Chart"])
 df = pd.read_csv('historical_spending.csv')
 df= df.drop('PerPerson', axis=1)
 sampled_df_5_columns =df.iloc[:, :5]
@@ -80,14 +81,14 @@ fig1=sns.pairplot(sampled_df_5_columns)
 st.pyplot(fig1)
 fig2= sns.displot(df['Flowers'], kind="kde")
 fig2.fig.suptitle("The density Distribution Chart!")
-st.pyplot(fig2)
+tab1.st.pyplot(fig2)
 # Create a new Figure object
 fig3, ax = plt.subplots() 
 # Pass the Axes object to the heatmap function
 heatmap = sns.heatmap(df.corr(), annot=True, ax=ax)
 ax.set_title("Correlation Matrix")
 # Pass the Figure object to st.pyplot()
-st.pyplot(fig3)
+tab2.st.pyplot(fig3)
 X = df.drop('Year', axis=1)
 y = df['Year']
 from sklearn.model_selection import train_test_split
@@ -113,14 +114,14 @@ plt.figure(figsize=(10, 8))
 plt.barh(feature_names, importance)
 plt.xlabel('Absolute Coefficient Value')
 plt.title('Feature Importance (Linear Regression)')
-st.pyplot(plt)
+tab3.st.pyplot(plt)
 pred = lr.predict(X_test)
 plt.figure(figsize=(10,7))
 plt.title("Actual vs. predicted",fontsize=25)
 plt.xlabel("Actual test set Year",fontsize=18)
 plt.ylabel("Prediction for the Year", fontsize=18)
 plt.scatter(x=y_test,y=pred)
-plt.show()
+st.pyplot(plt)
 from sklearn import metrics
 print('MAE:', metrics.mean_absolute_error(y_test, pred))
 print('MSE:', metrics.mean_squared_error(y_test, pred))
