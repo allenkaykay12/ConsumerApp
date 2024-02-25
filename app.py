@@ -73,12 +73,11 @@ filtered_df = df[(df['Year'] >= Lowerbound_Year) & (df['Year'] <= Upperbound_Yea
 tab3.bar_chart(data=filtered_df, x="Year", y="Flowers")
 
 st.title("Explanatory Data Analysis: Linear Regresssion Line")
-tab1, tab2, tab3 = st.tabs(["PairPlot", "Correlation Matrix", "Feature Importance Chart"])
 df = pd.read_csv('historical_spending.csv')
 df= df.drop('PerPerson', axis=1)
 sampled_df_5_columns =df.iloc[:, :5]
 fig1=sns.pairplot(sampled_df_5_columns)
-tab1.st.pyplot(fig1)
+st.pyplot(fig1)
 fig2= sns.displot(df['Flowers'], kind="kde")
 fig2.fig.suptitle("The density Distribution Chart!")
 st.pyplot(fig2)
@@ -88,7 +87,7 @@ fig3, ax = plt.subplots()
 heatmap = sns.heatmap(df.corr(), annot=True, ax=ax)
 ax.set_title("Correlation Matrix")
 # Pass the Figure object to st.pyplot()
-tab2.st.pyplot(fig3)
+st.pyplot(fig3)
 X = df.drop('Year', axis=1)
 y = df['Year']
 from sklearn.model_selection import train_test_split
