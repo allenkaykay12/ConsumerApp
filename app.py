@@ -82,6 +82,7 @@ st.pyplot(fig1)
 fig2= sns.displot(df['Flowers'], kind="kde")
 fig2.fig.suptitle("The density Distribution Chart!")
 st.pyplot(fig2)
+st.write("The correleration matrix shows how two variables are related to one another. The higher the number is, the higher the two variables are related to each other. if the number is negative that means we have a negative correlation and the positive numbers signify positive correlation between the two variables.")
 # Create a new Figure object
 fig3, ax = plt.subplots() 
 # Pass the Axes object to the heatmap function
@@ -101,6 +102,7 @@ lr = LinearRegression()
 lr.fit(X_train,y_train)
 coeff_df = pd.DataFrame(lr.coef_, X.columns, columns=['Coefficient'])
 
+st.write("The bar chart below aims to show how important the explanatory variable is in our prediction.")
 feature_names = [f'Feature_{i}' for i in list(X.columns)]
 df_X = pd.DataFrame(X, columns=feature_names)
 # Coefficients represent the importance in linear regression
