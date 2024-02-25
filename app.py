@@ -78,8 +78,10 @@ df= df.drop('PerPerson', axis=1)
 sampled_df_5_columns =df.iloc[:, :5]
 fig1=sns.pairplot(sampled_df_5_columns)
 st.pyplot(fig1)
-sns.distplot(df['Flowers'])
-sns.heatmap(df.corr(), annot=True)
+fig2= sns.distplot(df['Flowers'])
+st.pyplot(fig2)
+fig3=sns.heatmap(df.corr(), annot=True)
+st.pyplot(fig3)
 X = df.drop('Year', axis=1)
 y = df['Year']
 from sklearn.model_selection import train_test_split
