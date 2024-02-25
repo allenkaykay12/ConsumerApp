@@ -97,7 +97,7 @@ from sklearn.linear_model import LinearRegression
 lr = LinearRegression()
 lr.fit(X_train,y_train)
 coeff_df = pd.DataFrame(lr.coef_, X.columns, columns=['Coefficient'])
-coeff_df
+X.columns
 feature_names = [f'Feature_{i}' for i in list(X.columns)]
 df_X = pd.DataFrame(X, columns=feature_names)
 # Coefficients represent the importance in linear regression
@@ -107,8 +107,6 @@ coefficients = lr.coef_
 importance = np.abs(coefficients)
 
 # Plotting feature importance with feature names
-feature_names=[GiftCards, Clothing, EveningOut, GreetingCards, Jewelry, Flowers, Candy, PercentCelebrating]
-importance= [0.52, 0.34, 0.12, 0.68, 0.60, 2.84, 0.80, 0.75]
 plt.figure(figsize=(10, 8))
 plt.barh(feature_names, importance)
 plt.xlabel('Absolute Coefficient Value')
